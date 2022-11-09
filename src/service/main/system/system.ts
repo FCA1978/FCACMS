@@ -9,8 +9,8 @@ export function getPageListData(url: string, queryInfo: any) {
   });
 }
 
-export function deletePageData(url:string) {
-    return fcaRequest.delete<IDataType>({
-      url: url
-    });
+export function deletePageData(url: string) {
+  return fcaRequest.delete<IDataType>({
+    url: url,
+  });
 }

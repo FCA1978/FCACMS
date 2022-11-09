@@ -51,6 +51,7 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
   },
   actions: {
+    // IAccount接口 声明payload的值的类型
     async accountLoginAction({ commit }, payload: IAccount) {
       // 1.实现登录逻辑
       const loginResult = await accountLoginRequest(payload);

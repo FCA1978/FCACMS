@@ -63,6 +63,7 @@ import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "@/store";
 import { usePermission } from "@/hooks/userPermission";
 import FcaTable from "@/base-ui/table";
+import moment from "moment";
 export default defineComponent({
   props: {
     contentTableConfig: {
@@ -84,7 +85,7 @@ export default defineComponent({
     const isCreate = usePermission(props.pageName, "create");
     const isUpdate = usePermission(props.pageName, "update");
     const isDelete = usePermission(props.pageName, "delete ");
-    const isQuery = usePermission(props.pageName, "query");
+    // const isQuery = usePermission(props.pageName, "query");
 
     // 双向绑定pageInfo
     const pageInfo = ref({ currentPage: 1, pageSize: 10 });
@@ -92,7 +93,7 @@ export default defineComponent({
 
     // 发送网络请求
     const getPageData = (queryInfo: any = {}) => {
-      if (!isQuery) return;
+      // if (!isQuery) return;
       store.dispatch("system/getPageListAction", {
         pageName: props.pageName,
         queryInfo: {
@@ -103,11 +104,25 @@ export default defineComponent({
       });
     };
 
+    // 格式化格林威治时间
+    const formatDate = (time: any) => {
+      return moment.utc(time).local().format("YYYY-MM-DD");
+    };
+
+    // 格式化创建时间和更新时间
+    const changeFormatDate = (val: any) => {
+      val.map((item: { createAt: string; updateAt: string }) => {
+        item.createAt = JSON.parse(JSON.stringify(formatDate(item.createAt)));
+        item.updateAt = JSON.parse(JSON.stringify(formatDate(item.updateAt)));
+      });
+      return val;
+    };
+
     getPageData();
 
     // 从vuex中获取数据
     const dataList = computed(() =>
-      store.getters[`system/pageListData`](props.pageName)
+      changeFormatDate(store.getters[`system/pageListData`](props.pageName))
     );
 
     const dataCount = computed(() =>
@@ -146,6 +161,5 @@ export default defineComponent({
 <style scoped lang="less">
 .page-content {
   padding: 20px;
-  border-top: 20px solid #f5f5f5;
 }
 </style>

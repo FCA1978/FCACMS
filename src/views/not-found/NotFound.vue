@@ -2,7 +2,7 @@
   <div class="not-find">
     <iframe
       id="iframe"
-      src="https://www.17sucai.com/preview/1424582/2019-11-12/4/index.html"
+      src="http://www.hdqt.co.uk/404/"
       frameborder="0"
       width="100%"
       height="100%"

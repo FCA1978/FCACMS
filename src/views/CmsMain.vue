@@ -39,8 +39,6 @@ export default defineComponent({
   setup() {
     const isCollapse = ref(false);
     const changeMenuFold = (isFold: boolean) => {
-      console.log(isFold, "？");
-
       isCollapse.value = isFold;
     };
     return {

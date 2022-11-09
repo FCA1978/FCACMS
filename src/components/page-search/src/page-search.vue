@@ -3,7 +3,10 @@
     <div class="search">
       <fca-form v-bind="formConfig" v-model="formData">
         <template #header>
-          <h1 class="header">高级检索</h1>
+          <div class="header">
+            <el-icon :size="32"><Search /></el-icon>
+            <h2>检索条件</h2>
+          </div>
         </template>
         <template #footer>
           <div class="handle-btns">
@@ -63,7 +66,9 @@ export default defineComponent({
 
 <style scoped>
 .header {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .handle-btns {
   text-align: right;

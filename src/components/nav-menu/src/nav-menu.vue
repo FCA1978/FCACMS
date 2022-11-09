@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="logo">
       <img src="~@/assets/images/logo.png" alt="" />
-      <span class="title" v-show="!menuFold">Vue3+TS</span>
+      <span class="title" v-show="!menuFold">FCACMS</span>
     </div>
     <el-menu
       :default-active="defaultValue"
@@ -67,7 +67,6 @@ export default defineComponent({
     const defaultValue = ref(menu.id + "");
 
     const handleItemClick = (item: any) => {
-      console.log(item.url);
       router.push({
         path: item.url ?? "/not-found",
       });

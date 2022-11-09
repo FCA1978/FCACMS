@@ -64,9 +64,6 @@ class FCARequest {
       if (config.interceptors?.requestInterceptor) {
         config = config.interceptors.requestInterceptor(config);
       }
-
-      console.log(config);
-
       this.instance
         .request<any, T>(config)
         .then((res) => {

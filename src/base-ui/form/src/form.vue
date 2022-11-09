@@ -16,6 +16,7 @@
                   v-bind="item.otherOptions"
                   :show-password="item.type === 'password'"
                   v-model="formData[`${item.field}`]"
+                  clearable
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">

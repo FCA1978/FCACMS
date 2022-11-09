@@ -61,6 +61,7 @@ const systemModule: Module<ISysyemState, IRootState> = {
       // 1.获取pageUrl
       const pageName = payload.pageName;
       const pageUrl = `/${pageName}/list`;
+
       // let pageUrl = "";
       // switch (pageName) {
       //   case "users":
@@ -93,7 +94,7 @@ const systemModule: Module<ISysyemState, IRootState> = {
       commit(`change${changePageName}Count`, totalCount);
     },
 
-    async deletePageDataAction({dispatch}, payload: any) {
+    async deletePageDataAction({ dispatch }, payload: any) {
       // 1.pageName -> /users
       // 2.id -> /users/id
 
@@ -101,19 +102,18 @@ const systemModule: Module<ISysyemState, IRootState> = {
       const { pageName, id } = payload;
       const pageUrl = `/${pageName}/${id}`;
 
-      
-
       // 2.调用删除网络请求
       await deletePageData(pageUrl);
 
       // 3.重新请求最新的数据
-      dispatch('getPageListAction'),{
-        pageName,
-          queryInfo:{
-            offset:0,
-            size:10
-          }
-      }
+      dispatch("getPageListAction"),
+        {
+          pageName,
+          queryInfo: {
+            offset: 0,
+            size: 10,
+          },
+        };
     },
   },
 };

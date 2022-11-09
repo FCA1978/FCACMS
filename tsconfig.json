@@ -34,6 +34,7 @@
         "src/*"
       ]
     },
+    "suppressImplicitAnyIndexErrors": true,
     // 可以指定在项目使用哪里库的类型（proxy、window、document）
     "lib": [
       "esnext",

@@ -19,5 +19,7 @@ module.exports = {
     "vue/multi-word-component-names": 0,
     "@typescript-eslint/no-var-requires": "off",
     "vue/no-mutating-props": "off",
+    // 取消对LF和CRLF的校验
+    "linebreak-style": [0, "error", "windows"],
   },
 };

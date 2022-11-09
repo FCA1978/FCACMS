@@ -13,6 +13,7 @@
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      :header-cell-style="{ background: '#EEF5FD' }"
       v-bind="childrenProps"
     >
       <el-table-column
@@ -54,7 +55,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { ITableItem } from "../types";
 export default defineComponent({
   props: {
     title: {
@@ -66,7 +68,8 @@ export default defineComponent({
       required: true,
     },
     propList: {
-      type: Array,
+      //这里采用PropType是为了类型推论，让使用属性的时候获取更丰富的类型提示
+      type: Array as PropType<ITableItem[]>,
     },
     showIndexColumn: {
       type: Boolean,
@@ -106,6 +109,7 @@ export default defineComponent({
     const handleSizeChange = (pageSize: number) => {
       emit("update:page", { ...props.page, pageSize });
     };
+
     return {
       handleSelectionChange,
       handleCurrentChange,

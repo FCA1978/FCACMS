@@ -1,28 +1,26 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import CmsLogin from "../views/CmsLogin.vue";
-
 import localCache from "@/utils/cache";
 import { firstMenu } from "@/utils/map-menus";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/main",
+    redirect: "/login",
   },
   {
-    path: "/",
+    path: "/login",
     name: "login",
-    component: CmsLogin,
+    component: () => import("@/views/CmsLogin.vue"),
   },
   {
     path: "/main",
     name: "main",
-    component: () => import("../views/CmsMain.vue"),
+    component: () => import("@/views/CmsMain.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "not-found",
-    component: () => import("../views/not-found/NotFound.vue"),
+    component: () => import("@/views/not-found/NotFound.vue"),
     // children:[] ->根据userMenus来决定 -> children
   },
 ];
@@ -34,6 +32,8 @@ const router = createRouter({
 
 // 导航守卫
 router.beforeEach((to) => {
+  console.log(to);
+
   if (to.path !== "/login") {
     const token = localCache.getCache("token");
     if (!token) {
